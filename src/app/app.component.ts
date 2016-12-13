@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   text:string;
   constructor(){
-    this.text = "My Angular 2 App!"
+    this.text = "My Angular 2 App!!!"
   }
 }
