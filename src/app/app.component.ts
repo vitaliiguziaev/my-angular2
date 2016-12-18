@@ -5,27 +5,19 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app',
   styles: [require('bootstrap/dist/css/bootstrap.css')],
  	template: `
-  <div id="login-form" class="container">
-    <form>
-      <div class="form-group row">
-        <label for="login" class="col-sm-1 col-form-label">Login</label>
-        <div class="col-sm-2">
-          <input type="text" class="form-control" id="login" placeholder="Login">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="password" class="col-sm-1 col-form-label">Password</label>
-        <div class="col-sm-2">
-          <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="offset-sm-2 col-sm-10">
-          <button type="submit" class="btn btn-primary">Enter</button>
-        </div>
-      </div>
-    </form>
-  </div>
+    <header>
+        <nav class="navbar navbar-light bg-faded">
+          <h1 class="navbar-brand mb-0">App</h1>
+        </nav>
+    </header>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    
+    <footer>
+      <span>Copyright 2016-2017</span>
+    </footer>
   `,
   encapsulation: ViewEncapsulation.None,
 })

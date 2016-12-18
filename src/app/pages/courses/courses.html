@@ -1,0 +1,13 @@
+<div *ngFor="let course of courses">
+      <span>{{course.name}}</span>
+      <span>{{course.duration}}</span>
+      <span>{{course.created}}</span>
+      <span>{{course.authors}}</span>
+      <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Edit</button>
+      </div>
+      <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Delete</button>
+      </div>
+      <hr>
+</div>
