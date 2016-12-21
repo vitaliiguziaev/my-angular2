@@ -1,28 +1,34 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class LoginService{
+export class LoginService {
     static LOGIN_KEY = 'login';
 
-    login(login:string, password:string):Observable<boolean>{
-        return Observable.create(observer=> {
-            setTimeout(()=> {
+    login(login: string, password: string): Observable<User> {
+        return Observable.create(observer => {
+            setTimeout(() => {
+                var user = null;
                 let result = (login !== 'q') && (password !== 'q');
-                if (result) {
-                    localStorage.setItem(LoginService.LOGIN_KEY,login);
+                if (!result) {
+                    user = new User('q', null);
+                    localStorage.setItem(LoginService.LOGIN_KEY, user.login);
                 }
-                observer.next(result);
+                observer.next(user);
             }, 1000);
         });
     }
 
-    isLoggedIn(){
+    isLoggedIn() {
         return !!localStorage.getItem(LoginService.LOGIN_KEY);
     }
 
-    logOff(){
+    logOff() {
         localStorage.removeItem(LoginService.LOGIN_KEY);
     }
+}
+
+export class User {
+    constructor(public login: string, public password: string) { }
 }
