@@ -13,7 +13,7 @@
             <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="login" required pattern="[A-Za-z]*" #loginInput="ngModel"/>
           </div>
           <div *ngIf="loginInput.errors && (loginInput.dirty || loginInput.touched)">
-            <div [hidden]="loginInput.valid" class="col-sm-3">
+            <div [hidden]="loginInput.valid" class="col-sm-3 text-danger">
               * enter letters
             </div>
           </div>
@@ -24,7 +24,7 @@
             <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" required pattern="[A-Za-z0-9]*" #passwordInput="ngModel"/>
           </div>
           <div *ngIf="passwordInput.errors && (passwordInput.dirty || passwordInput.touched)">
-            <div [hidden]="passwordInput.valid" class="col-sm-3">
+            <div [hidden]="passwordInput.valid" class="col-sm-3 text-danger">
               * enter letters or numbers
             </div>
           </div>
