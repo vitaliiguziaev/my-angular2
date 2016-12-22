@@ -10,8 +10,8 @@ export class LoginService {
         return Observable.create(observer => {
             setTimeout(() => {
                 var user = null;
-                let result = (login !== 'q') && (password !== 'q');
-                if (!result) {
+                let isCorrect = (login == 'q') && (password == 'q');
+                if (isCorrect) {
                     user = new User('q', null);
                     localStorage.setItem(LoginService.LOGIN_KEY, user.login);
                 }

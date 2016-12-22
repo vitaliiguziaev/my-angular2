@@ -1,7 +1,7 @@
-<div class="container login">
+<div class="container" style="margin-top: 200px">
   <div class="row">
     <div>
-      <form>
+      <form #logonForm="ngForm">
         <div class="form-group row">
           <div name="warning" [hidden]="!buttonIsPressed" class="offset-sm-3 col-sm-3 alert alert-warning" role="alert">
             Wrong Login or Password
@@ -10,21 +10,28 @@
         <div class="form-group row">
           <label for="login" class="offset-sm-3 col-sm-1 col-form-label">Login</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="login" (blur)="checkLogin(login)" />
+            <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="login" required pattern="[A-Za-z]*" #loginInput="ngModel"/>
           </div>
-          <!--<div [hidden]="!login.valid && login.touched" class="col-sm-2">
-            * enter
-          </div>-->
+          <div *ngIf="loginInput.errors && (loginInput.dirty || loginInput.touched)">
+            <div [hidden]="loginInput.valid" class="col-sm-3">
+              * enter letters
+            </div>
+          </div>
         </div>
         <div class="form-group row">
           <label for="password" class="offset-sm-3 col-sm-1 col-form-label">Password</label>
           <div class="col-sm-2">
-            <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" />
+            <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" required pattern="[A-Za-z0-9]*" #passwordInput="ngModel"/>
+          </div>
+          <div *ngIf="passwordInput.errors && (passwordInput.dirty || passwordInput.touched)">
+            <div [hidden]="passwordInput.valid" class="col-sm-3">
+              * enter letters or numbers
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <div class="offset-sm-4 col-sm-2">
-            <button type="submit" class="btn btn-primary" [disabled]="!password || !login" (click)="logIn()">Enter</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!logonForm.valid || !password || !login" (click)="logIn()">Enter</button>
           </div>
         </div>
       </form>

@@ -4,7 +4,7 @@ import { LoginService, User } from './../../services';
 
 @Component({
     selector: 'login-page',
-    styleUrls: ['./login.css'],
+    // styleUrls: ['./login.css'],
     templateUrl: './login.html'
 })
 
@@ -26,9 +26,5 @@ export class LoginComponent {
                     this.buttonIsPressed = true;
                 }
             });
-    }
-
-    checkLogin(login: string) {
-        
     }
 }
