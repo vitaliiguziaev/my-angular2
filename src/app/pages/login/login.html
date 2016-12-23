@@ -10,9 +10,9 @@
         <div class="form-group row">
           <label for="login" class="offset-sm-3 col-sm-1 col-form-label">Login</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="login" required pattern="[A-Za-z]*" #loginInput="ngModel"/>
+            <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="login" required pattern="[A-Za-z]*" #loginInput="ngModel" (focus)="loginInput.isLostFocus = false" (blur)="loginInput.isLostFocus = true"/>
           </div>
-          <div *ngIf="loginInput.errors && (loginInput.dirty || loginInput.touched)">
+          <div *ngIf="loginInput.errors && loginInput.touched && loginInput.isLostFocus">
             <div [hidden]="loginInput.valid" class="col-sm-3 text-danger">
               * enter letters
             </div>
@@ -21,9 +21,9 @@
         <div class="form-group row">
           <label for="password" class="offset-sm-3 col-sm-1 col-form-label">Password</label>
           <div class="col-sm-2">
-            <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" required pattern="[A-Za-z0-9]*" #passwordInput="ngModel"/>
+            <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" required pattern="[A-Za-z0-9]*" #passwordInput="ngModel" (focus)="passwordInput.isLostFocus = false" (blur)="passwordInput.isLostFocus = true"/>
           </div>
-          <div *ngIf="passwordInput.errors && (passwordInput.dirty || passwordInput.touched)">
+          <div *ngIf="passwordInput.errors && passwordInput.touched && passwordInput.isLostFocus">
             <div [hidden]="passwordInput.valid" class="col-sm-3 text-danger">
               * enter letters or numbers
             </div>

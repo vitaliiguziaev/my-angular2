@@ -204,11 +204,12 @@ module.exports = function (options) {
        * Copies project static assets.
        *
        * See: https://www.npmjs.com/package/copy-webpack-plugin
-       *
-      // new CopyWebpackPlugin([
-      //   { from: 'src/assets', to: 'assets' },
-      //   { from: 'src/meta'}
-      // ]),
+       */
+
+      new CopyWebpackPlugin([
+        { from: 'src/assets', to: 'assets' },
+        // { from: 'src/meta'}
+      ]),
 
 
       /*
