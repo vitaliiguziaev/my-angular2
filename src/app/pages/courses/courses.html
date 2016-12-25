@@ -1,14 +1,29 @@
-<div *ngFor="let course of courses">
-      <span>{{course.title}}</span>
-      <span>{{course.description}}</span>
-      <span>{{course.duration}}</span>
-      <span>{{course.date}}</span>
-      <span>{{course.authors}}</span>
-      <div class="offset-sm-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Edit</button>
       </div>
-      <div class="offset-sm-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Delete</button>
+      <div class="col-sm-2">
+            <button class="btn btn-primary">Search</button>
       </div>
-      <hr>
+</div>
+
+<div class="add-course">
+      <button class="btn btn-primary">Add course</button>
+</div>
+
+<div class="container">
+      <div class="row">
+            <div class="col-sm-4">
+                  <div *ngFor="let course of courses">
+                        <span>{{course.title}}</span>
+                        <span>{{course.description}}</span>
+                        <span>{{course.duration | numberToTime }}</span>
+                        <span>{{course.date | date: 'dd.MM.yy'}}</span>
+                        <span>{{course.authors}}</span>
+                        <div class="offset-sm-2 col-sm-10">
+                              <button class="edit-course btn btn-primary" (click)="editCourse(course)">Edit</button>
+                        </div>
+                        <div class="offset-sm-2 col-sm-10">
+                              <button class="delete-course btn btn-danger" (click)="deleteCourse(course)">Delete</button>
+                        </div>
+                  </div>
+            </div>
+      </div>
 </div>
