@@ -18,9 +18,9 @@
 
             <div class="list-group">
                   <div *ngFor="let course of courses">
-                        <div class="container list-group-item" style="margin:10px;">
+                        <div class="container" style="margin:10px;">
                               <div class="row">
-                                    <div class="col-sm-9" style="height:80px">
+                                    <div class="col-sm-9 list-group-item" style="height:120px;">
                                           <div class="row">
                                                 <div class="col-sm-3">
                                                       <p style="font-weight: 600">
@@ -32,7 +32,7 @@
                                                             {{course.duration | numberToTime }}
                                                       </p>
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="offset-sm-1 col-sm-2">
                                                       <p>
                                                             {{course.date | date: 'dd.MM.yy'}}
                                                       </p>
@@ -41,11 +41,11 @@
                                                       <button class="edit-course btn btn-success" (click)="editCourse(course)">Edit course</button>
                                                 </div>
                                           </div>
-                                          <div class="row" style="height:80px;">
+                                          <div class="row" style="height:60px;">
                                                 <div class="col-sm-7">
                                                       <p>{{course.description}} </p>
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="offset-sm-1 col-sm-2" style="margin-top: 10px">
                                                       <button class="delete-course btn btn-danger" (click)="deleteCourse(course)">Delete</button>
                                                 </div>
                                           </div>
