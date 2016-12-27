@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'numberToTime' })
 export class NumberToTime implements PipeTransform {
     FORMAT_HOURS: string = 'h';
-    FORMAT_MINUTES: string = 'm';
+    FORMAT_MINUTES: string = 'min';
     HOUR_IN_MINUTES: number = 60;
 
     transform(value: number): string {
