@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 
-import { CoursesComponent } from './pages/courses';
+import { CoursesComponent, AddCourseComponent } from './pages/courses';
 import { LoginComponent } from './pages/login';
 import { LoginService, CourseService } from './services/';
 import { NumberToTime } from './pipes/numberToTime.pipe';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, CoursesComponent, LoginComponent, NumberToTime],
+  declarations: [AppComponent, CoursesComponent, AddCourseComponent, LoginComponent, NumberToTime],
   imports: [RouterModule.forRoot(ROUTES, { useHash: true }), NgbModule.forRoot(), BrowserModule, FormsModule],
   providers: [LoginService, CourseService]
 })

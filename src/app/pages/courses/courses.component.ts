@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService, Course } from './../../services/';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'list-courses',
@@ -8,7 +9,7 @@ import { CourseService, Course } from './../../services/';
 
 export class CoursesComponent {
     courses: Course[] = [];
-    constructor(private courseService: CourseService) {
+    constructor(private courseService: CourseService, private router: Router) {
     }
 
     ngOnInit() {
@@ -24,7 +25,11 @@ export class CoursesComponent {
     }
 
     editCourse(course: Course) {
+        this.router.navigate(['/courses', course.id]);
+    }
 
+    addCourse() {
+        this.router.navigate(['/courses/new']);
     }
 
     searchCourses(query: string) {
