@@ -26,4 +26,8 @@ export class CoursesComponent {
     editCourse(course: Course) {
 
     }
+
+    searchCourses(query: string) {
+        this.courses = this.courseService.searchCourses(query);
+    }
 }
