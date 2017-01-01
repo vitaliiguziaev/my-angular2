@@ -23,9 +23,13 @@ export class LoginService {
     isLoggedIn() {
         return !!localStorage.getItem(LoginService.LOGIN_KEY);
     }
-
+    
     logOff() {
         localStorage.removeItem(LoginService.LOGIN_KEY);
+    }
+
+    getLogin(){
+        return localStorage.getItem(LoginService.LOGIN_KEY);
     }
 }
 
