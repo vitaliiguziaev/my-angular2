@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LoginService {
     static LOGIN_KEY = 'login';
+
+    constructor(private router: Router) {
+
+    }
 
     login(login: string, password: string): Observable<User> {
         return Observable.create(observer => {
@@ -23,12 +28,14 @@ export class LoginService {
     isLoggedIn() {
         return !!localStorage.getItem(LoginService.LOGIN_KEY);
     }
-    
-    logOff() {
+
+    logOff(): boolean {
         localStorage.removeItem(LoginService.LOGIN_KEY);
+        this.router.navigate(['/login']);
+        return false;
     }
 
-    getLogin(){
+    getLogin() {
         return localStorage.getItem(LoginService.LOGIN_KEY);
     }
 }

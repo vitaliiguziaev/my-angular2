@@ -16,8 +16,8 @@ export class AppComponent {
     return this.loginService.getLogin();
   }
 
-  logOff() {
-    this.loginService.logOff();
+  logOff(): boolean {
+    return this.loginService.logOff();
   }
 
 }
