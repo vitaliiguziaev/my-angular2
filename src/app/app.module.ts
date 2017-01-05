@@ -1,3 +1,4 @@
+import { LoggedInGuard } from './guards/LoggedInGuard';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
   bootstrap: [AppComponent],
   declarations: [AppComponent, CoursesComponent, AddCourseComponent, LoginComponent, NumberToTime],
   imports: [RouterModule.forRoot(ROUTES, { useHash: true }), NgbModule.forRoot(), BrowserModule, FormsModule],
-  providers: [LoginService, CourseService]
+  providers: [LoginService, CourseService, LoggedInGuard]
 })
 
 export class AppModule {

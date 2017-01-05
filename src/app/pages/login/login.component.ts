@@ -21,7 +21,7 @@ export class LoginComponent {
             .subscribe(res => {
                 if (res !== null) {
                     this.router.navigate(['/courses']);
-                } else {                    
+                } else {
                     this.password = '';
                     this.buttonIsPressed = true;
                 }
