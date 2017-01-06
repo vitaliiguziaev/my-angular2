@@ -12,9 +12,11 @@ import { NumberToTime } from './pipes/numberToTime.pipe';
 import { ROUTES } from './app.routes';
 import { FormsModule } from '@angular/forms';
 
+import { LogoffComponent } from './components/';
+
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, CoursesComponent, AddCourseComponent, LoginComponent, NumberToTime],
+  declarations: [AppComponent, CoursesComponent, AddCourseComponent, LoginComponent, NumberToTime, LogoffComponent],
   imports: [RouterModule.forRoot(ROUTES, { useHash: true }), NgbModule.forRoot(), BrowserModule, FormsModule],
   providers: [LoginService, CourseService, LoggedInGuard]
 })

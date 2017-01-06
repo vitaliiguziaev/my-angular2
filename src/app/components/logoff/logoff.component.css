@@ -1,0 +1,6 @@
+.logoff-view{
+    float: right;
+}
+.logoff-view a{
+   text-decoration: underline; 
+}

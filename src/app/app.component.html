@@ -3,11 +3,7 @@
         <h1 class="navbar-brand mb-0">
             <div><img style="width: 45px; height: 45px" src="assets/icon/main_icon_brain.png"></div>
         </h1>
-        <div class="logoff-view" *ngIf="getUser()">
-            <b>{{getUser()}}</b> login
-            <br>
-            <a href (click)="logOff()">logoff</a>
-        </div>
+        <logoff> </logoff>
     </nav>
 </header>
 
