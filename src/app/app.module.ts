@@ -19,6 +19,7 @@ import { LoginService, CourseService } from './services/';
 /* ROUTES */
 import { ROUTES } from './app.routes';
 
+/* ANGULAR */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

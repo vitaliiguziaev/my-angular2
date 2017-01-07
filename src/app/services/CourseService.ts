@@ -1,9 +1,11 @@
+import { Observable, Observer } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Author } from './AuthorService';
 
 @Injectable()
 export class CourseService {
-    private courses: Course[];
+    courses: Course[] = [];
+
     constructor() {
         this.courses = [
             new Course(1, 'Course 1', 'description 1', 90, new Date(), null),
@@ -13,21 +15,29 @@ export class CourseService {
         ];
     }
 
-    getCoursesList(): Course[] {
-        return this.courses;
+    getCoursesList(): Observable<Course[]> {
+        return Observable.create((observer: Observer<Array<Course>>) => {
+            observer.next(this.courses);
+            observer.complete();
+        });
     }
 
-    deleteCourse(course: Course) {
-        this.courses = this.courses.filter(x => x.id !== course.id);
+    deleteCourse(course: Course): Observable<void> {
+        return Observable.create((observer: Observer<void>) => {
+            this.courses = this.courses.filter(x => x.id !== course.id);
+            observer.complete();
+        });
     }
 
-    searchCourses(query: string) {
-        if (!query) {
-            return this.courses;
-        }
-        return this.courses.filter(x => x.title.search(new RegExp(query, "i")) != -1);
+    searchCourses(query: string): Observable<Course[]> {
+        return Observable.create((observer: Observer<Array<Course>>) => {
+            if (query) {
+                this.courses = this.courses.filter(x => x.title.search(new RegExp(query, 'i')) != -1);
+            }
+            observer.next(this.courses);
+            observer.complete();
+        });
     }
-
 }
 
 export class Course {

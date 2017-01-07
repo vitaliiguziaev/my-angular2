@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LoginService {

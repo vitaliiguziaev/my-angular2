@@ -9,18 +9,23 @@ import { Router } from '@angular/router';
 
 export class CoursesComponent {
     courses: Course[] = [];
+
     constructor(private courseService: CourseService, private router: Router) {
     }
 
     ngOnInit() {
-        this.courses = this.courseService.getCoursesList();
+        this.getCourses();
+    }
+
+    getCourses() {
+        this.courseService.getCoursesList().subscribe(courses => this.courses = courses);
     }
 
     deleteCourse(course: Course) {
-        var confirmDialog = confirm("Are you sure you want to remove this course?");
+        let confirmDialog = confirm("Are you sure you want to remove this course?");
         if (confirmDialog == true) {
-            this.courseService.deleteCourse(course);
-            this.courses = this.courseService.getCoursesList();
+            this.courseService.deleteCourse(course).subscribe(() => { });
+            this.getCourses();
         }
     }
 
@@ -33,6 +38,6 @@ export class CoursesComponent {
     }
 
     searchCourses(query: string) {
-        this.courses = this.courseService.searchCourses(query);
+        this.courseService.searchCourses(query).subscribe(courses => this.courses = courses);
     }
 }
