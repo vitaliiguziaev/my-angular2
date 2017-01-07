@@ -3,7 +3,7 @@ import { Course } from './../../services/';
 
 @Component({
     selector: 'add-course',
-    templateUrl: './addCourse.html'
+    templateUrl: './addCourse.html',
 })
 
 export class AddCourseComponent {

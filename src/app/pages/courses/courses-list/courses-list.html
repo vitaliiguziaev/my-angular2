@@ -1,0 +1,7 @@
+<div class="list-group">
+    <course-row *ngFor="let course of courses" 
+                        [course]="course" 
+                        (onEditCourse)="editCourse($event)" 
+                        (onDeleteCourse)="deleteCourse($event)">
+    </course-row>
+</div>

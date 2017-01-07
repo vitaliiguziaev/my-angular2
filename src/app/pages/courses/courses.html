@@ -1,57 +1,13 @@
 <div class="container" style="margin:20px;">
       <div class="row col-sm-10">
 
-            <div class="search col-sm-4" style="margin:5px;">
-                  <div class="input-group">
-                        <input type="text" class="form-control" placeholder="name fragment" name="search" #search>
-                        <span class="input-group-btn">
-                              <button class="btn btn-primary" (click)="searchCourses(search.value)">Find</button>
-                        </span>
-                  </div>
-            </div>
+            <search-courses (onSearch)="searchCourses($event)"></search-courses>
 
             <div class="add-course offset-sm-5 col-sm-2" style="margin:5px;">
                   <button class="btn btn-primary" (click)="addCourse()">Add course</button>
             </div>
 
-            <div class="list-group">
-                  <div *ngFor="let course of courses">
-                        <div class="container" style="margin:10px;">
-                              <div class="row">
-                                    <div class="col-sm-9 list-group-item" style="height:120px;">
-                                          <div class="row">
-                                                <div class="col-sm-3">
-                                                      <p style="font-weight: 600">
-                                                            {{course.title}}
-                                                      </p>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                      <p>
-                                                            {{course.duration | numberToTime }}
-                                                      </p>
-                                                </div>
-                                                <div class="offset-sm-1 col-sm-2">
-                                                      <p>
-                                                            {{course.date | date: 'dd.MM.yy'}}
-                                                      </p>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                      <button class="edit-course btn btn-success" (click)="editCourse(course)">Edit course</button>
-                                                </div>
-                                          </div>
-                                          <div class="row" style="height:60px;">
-                                                <div class="col-sm-7">
-                                                      <p>{{course.description}} </p>
-                                                </div>
-                                                <div class="offset-sm-1 col-sm-2" style="margin-top: 10px">
-                                                      <button class="delete-course btn btn-danger" (click)="deleteCourse(course)">Delete</button>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
-            </div>
+            <courses-list [courses]="courses" (onEditCourse)="editCourse($event)" (onDeleteCourse)="deleteCourse($event)"></courses-list>
 
       </div>
 </div>
