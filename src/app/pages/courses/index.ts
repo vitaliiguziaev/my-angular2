@@ -1,2 +1,2 @@
 export * from './courses.component';
-export * from './addCourse/addCourse.component';
+export * from './add-editCourse/add-editCourse.component';

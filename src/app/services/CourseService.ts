@@ -18,7 +18,7 @@ export class CourseService {
 
     getCourse(id: number): Observable<Course> {
         return Observable.create((observer: Observer<Course>) => {
-            let course = this.courses.find(x => x.id == id);
+            let course = this.courses.find(x => x.id === id);
             observer.next(course);
             observer.complete();
         });
@@ -27,6 +27,24 @@ export class CourseService {
     getCoursesList(): Observable<Course[]> {
         return Observable.create((observer: Observer<Array<Course>>) => {
             observer.next(this.courses);
+            observer.complete();
+        });
+    }
+
+    addCourse(course: Course) {
+        return Observable.create((observer: Observer<Course>) => {
+            course.id = this.courses.length+1;
+            this.courses.push(course);
+            observer.next(course);
+            observer.complete();
+        });
+    }
+
+    editCourse(course: Course) {
+        return Observable.create((observer: Observer<Course>) => {
+            let ndx = this.courses.findIndex(x => x.id == course.id);
+            let editCourse = Object.assign(oldCourse, course);
+            observer.next(editCourse);
             observer.complete();
         });
     }
@@ -41,7 +59,7 @@ export class CourseService {
     searchCourses(query: string): Observable<Course[]> {
         return Observable.create((observer: Observer<Array<Course>>) => {
             if (query) {
-                this.courses = this.courses.filter(x => x.title.search(new RegExp(query, 'i')) != -1);
+                this.courses = this.courses.filter(x => x.title.search(new RegExp(query, 'i')) !== -1);
             }
             observer.next(this.courses);
             observer.complete();
