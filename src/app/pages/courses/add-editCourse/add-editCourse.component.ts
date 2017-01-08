@@ -54,6 +54,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     save(value: any): boolean {
         if (!this.courseForm.valid) {
             let errorMessage = this.buildValidationError(value);
+            //this.modalWindow.open(errorMessage);
             console.log(errorMessage);
         } else {
             Object.assign(this.course, value);
