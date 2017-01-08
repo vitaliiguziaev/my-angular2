@@ -43,6 +43,7 @@ export class CourseService {
     editCourse(course: Course) {
         return Observable.create((observer: Observer<Course>) => {
             let ndx = this.courses.findIndex(x => x.id == course.id);
+            let oldCourse = this.courses[ndx];
             let editCourse = Object.assign(oldCourse, course);
             observer.next(editCourse);
             observer.complete();
