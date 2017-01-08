@@ -1,3 +1,39 @@
-<div class="add-course">
-    Add/Edit course here!
+<div class="container" style="margin-top: 50px">
+<div class="row">
+  <div>
+    <form>
+      <div class="form-group row">
+        <label for="title" class="offset-sm-3 col-sm-1 col-form-label">Title</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="login" [(ngModel)]="course.title" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="offset-sm-3 col-sm-1 col-form-label">Description</label>
+        <div class="col-sm-4">
+          <textarea type="text" class="form-control" name="description" [(ngModel)]="course.description"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="date" class="offset-sm-3 col-sm-1 col-form-label">Date</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="date" [(ngModel)]="course.date" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="duration" class="offset-sm-3 col-sm-1 col-form-label">Duration</label>
+        <div class="col-sm-1">
+          <input type="text" class="form-control" name="duration" [(ngModel)]="course.duration" />
+        </div>
+        <duration-view [duration]="course.duration"></duration-view>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-4 col-sm-2">
+          <button type="submit" class="btn btn-success" (click)="save()">Save</button>
+          <button type="submit" class="btn btn-primary" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 </div>

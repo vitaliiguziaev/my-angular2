@@ -1,3 +1,4 @@
+import { CoursesComponent } from './../pages/courses/courses.component';
 import { Observable, Observer } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Author } from './AuthorService';
@@ -13,6 +14,14 @@ export class CourseService {
             new Course(3, 'Course 3', 'description 3', 120, new Date(), null),
             new Course(4, 'Course 4', 'description 4', 130, new Date(), null),
         ];
+    }
+
+    getCourse(id: number): Observable<Course> {
+        return Observable.create((observer: Observer<Course>) => {
+            let course = this.courses.find(x => x.id == id);
+            observer.next(course);
+            observer.complete();
+        });
     }
 
     getCoursesList(): Observable<Course[]> {
