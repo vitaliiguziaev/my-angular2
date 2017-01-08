@@ -1,3 +1,4 @@
+import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
 import { Subscription } from 'rxjs/Subscription';
 import { Course, CourseService } from './../../../services/CourseService';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -20,7 +21,8 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         private courseService: CourseService,
         private route: ActivatedRoute,
         private router: Router,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private modalWindow: ModalErrorWindow
     ) { }
 
     ngOnInit(): void {
@@ -92,7 +94,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         }
         return errorMessage;
     }
-    
+
     formErrors = {
         'title': '',
         'description': '',
@@ -100,7 +102,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         'duration': ''
     }
 
-     validationMessages = {
+    validationMessages = {
         'title': {
             'required': 'Title is required.',
         },
