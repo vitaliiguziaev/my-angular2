@@ -32,7 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   bootstrap: [AppComponent],
   declarations: [AppComponent, CoursesComponent, AddEditCourseComponent, LoginComponent, NumberToTime, LogoffComponent, SearchCoursesComponent, CoursesListComponent, CourseRowComponent, DurationComponent, ModalErrorWindow],
   imports: [RouterModule.forRoot(ROUTES, { useHash: true }), NgbModule.forRoot(), BrowserModule, FormsModule, ReactiveFormsModule],
-  providers: [LoginService, CourseService, LoggedInGuard, ModalErrorWindow]
+  providers: [LoginService, CourseService, LoggedInGuard]
 })
 
 export class AppModule {

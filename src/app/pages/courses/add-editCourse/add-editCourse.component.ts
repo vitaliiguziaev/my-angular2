@@ -1,7 +1,7 @@
 import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
 import { Subscription } from 'rxjs/Subscription';
 import { Course, CourseService } from './../../../services/CourseService';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 export class AddEditCourseComponent implements OnInit, OnDestroy {
+    @ViewChild(ModalErrorWindow) modalWindow: ModalErrorWindow;
     courseForm: FormGroup;
     sub: Subscription;
     id: number;
@@ -21,8 +22,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         private courseService: CourseService,
         private route: ActivatedRoute,
         private router: Router,
-        private fb: FormBuilder,
-        private modalWindow: ModalErrorWindow
+        private fb: FormBuilder
     ) { }
 
     ngOnInit(): void {
@@ -54,7 +54,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     save(value: any): boolean {
         if (!this.courseForm.valid) {
             let errorMessage = this.buildValidationError(value);
-            //this.modalWindow.open(errorMessage);
+            this.modalWindow.open(errorMessage);
             console.log(errorMessage);
         } else {
             Object.assign(this.course, value);

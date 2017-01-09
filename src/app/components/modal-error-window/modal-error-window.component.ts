@@ -1,13 +1,11 @@
-import { Component, Injectable, ViewEncapsulation } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'modal-error-window',
-    templateUrl: './modal-error-window.html',
-    encapsulation: ViewEncapsulation.None,
+    templateUrl: './modal-error-window.html'
 })
 
-@Injectable()
 export class ModalErrorWindow {
     constructor(private modalService: NgbModal) { }
 
