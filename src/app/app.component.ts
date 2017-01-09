@@ -3,7 +3,7 @@ import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app',
-  styles: [require('bootstrap/dist/css/bootstrap.css')],
+  styles: [require('./bootstrap.min.css')],
   templateUrl: './app.component.html',
   encapsulation: ViewEncapsulation.None
 })
