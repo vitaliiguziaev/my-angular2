@@ -1,5 +1,5 @@
 /* COMPONENTS */
-import { ModalErrorWindow } from './components/modal-error-window/modal-error-window.component';
+import { ModalErrorWindow, ModalContent } from './components/modal-error-window/modal-error-window.component';
 import { DurationComponent } from './components/duration/duration.component';
 import { CourseRowComponent } from './pages/courses/courses-list/course-row/course-row.component';
 import { CoursesListComponent } from './pages/courses/courses-list/courses-list.component';
@@ -30,9 +30,33 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, CoursesComponent, AddEditCourseComponent, LoginComponent, NumberToTime, LogoffComponent, SearchCoursesComponent, CoursesListComponent, CourseRowComponent, DurationComponent, ModalErrorWindow],
-  imports: [RouterModule.forRoot(ROUTES, { useHash: true }), NgbModule.forRoot(), BrowserModule, FormsModule, ReactiveFormsModule],
-  providers: [LoginService, CourseService, LoggedInGuard]
+  declarations: [
+    AppComponent,
+    CoursesComponent,
+    AddEditCourseComponent,
+    LoginComponent,
+    NumberToTime,
+    LogoffComponent,
+    SearchCoursesComponent,
+    CoursesListComponent,
+    CourseRowComponent,
+    DurationComponent,
+    ModalErrorWindow,
+    ModalContent
+  ],
+  entryComponents: [ModalContent],
+  imports: [
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    NgbModule.forRoot(),
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    LoginService,
+    CourseService,
+    LoggedInGuard
+  ]
 })
 
 export class AppModule {
