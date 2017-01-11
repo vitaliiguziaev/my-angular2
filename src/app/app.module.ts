@@ -10,7 +10,7 @@ import { LoginComponent } from './pages/login';
 import { AppComponent } from './app.component';
 
 /* DIRECTIVES */
-import { InputDateLimiterDirective } from './directives/input-date-limiter.directive';
+import { DateLimiterDirective } from './directives/date-limiter.directive';
 
 /* GUARDS */
 import { LoggedInGuard } from './guards/LoggedInGuard';
@@ -46,7 +46,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DurationComponent,
     ModalErrorWindow,
     ModalContent,
-    InputDateLimiterDirective
+    DateLimiterDirective
   ],
   entryComponents: [ModalContent],
   imports: [

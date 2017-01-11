@@ -48,9 +48,14 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         this.courseForm = this.fb.group({
             'title': [this.course.title, Validators.required],
             'description': [this.course.description, Validators.required],
-            'date': [datePipe.transform(this.course.date, 'dd.MM.yy'), Validators.required],
+            'date': [datePipe.transform(this.course.date, 'dd.MM.yyyy'), Validators.required],
             'duration': [this.course.duration, Validators.required],
         });
+    }
+
+    getCourseDate(date) {
+        let partDate = date.split('.');
+        return new Date(+partDate[2], +partDate[1] - 1, +partDate[0]);
     }
 
     save(value: any): boolean {
@@ -59,6 +64,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             this.modalWindow.open(errorMessage);
         } else {
             Object.assign(this.course, value);
+            this.course.date = this.getCourseDate(value.date);
             if (this.isCreateCourse) {
                 this.courseService.addCourse(this.course).subscribe(course => { });
             } else {
