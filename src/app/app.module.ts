@@ -9,6 +9,9 @@ import { LogoffComponent } from './components/';
 import { LoginComponent } from './pages/login';
 import { AppComponent } from './app.component';
 
+/* DIRECTIVES */
+import { InputDateLimiterDirective } from './directives/input-date-limiter.directive';
+
 /* GUARDS */
 import { LoggedInGuard } from './guards/LoggedInGuard';
 
@@ -42,7 +45,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CourseRowComponent,
     DurationComponent,
     ModalErrorWindow,
-    ModalContent
+    ModalContent,
+    InputDateLimiterDirective
   ],
   entryComponents: [ModalContent],
   imports: [

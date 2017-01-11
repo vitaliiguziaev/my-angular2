@@ -1,13 +1,14 @@
 import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
 import { Subscription } from 'rxjs/Subscription';
 import { Course, CourseService } from './../../../services/CourseService';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'add-edit-course',
-    templateUrl: './add-editCourse.html',
+    templateUrl: './add-editCourse.html'
 })
 
 export class AddEditCourseComponent implements OnInit, OnDestroy {
@@ -43,10 +44,11 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     }
 
     buildForm(): void {
+        let datePipe = new DatePipe('En-us');
         this.courseForm = this.fb.group({
             'title': [this.course.title, Validators.required],
             'description': [this.course.description, Validators.required],
-            'date': [this.course.date, Validators.required],
+            'date': [datePipe.transform(this.course.date, 'dd.MM.yy'), Validators.required],
             'duration': [this.course.duration, Validators.required],
         });
     }

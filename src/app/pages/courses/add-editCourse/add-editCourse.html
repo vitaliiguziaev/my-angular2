@@ -17,13 +17,13 @@
       <div class="form-group row">
         <label for="date" class="offset-sm-3 col-sm-1 col-form-label">Date</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="date" [formControl]="courseForm.controls.date" />
+          <input type="text" class="form-control" name="date" [formControl]="courseForm.controls.date" date-limiter/>
         </div>
       </div>
       <div class="form-group row">
         <label for="duration" class="offset-sm-3 col-sm-1 col-form-label">Duration</label>
         <div class="col-sm-1">
-          <input type="number" class="form-control" name="duration" [formControl]="courseForm.controls.duration" />
+          <input type="number" class="form-control" name="duration" [formControl]="courseForm.controls.duration"/>
         </div>
         <duration-view [duration]="courseForm.controls.duration.value"></duration-view>
       </div>
