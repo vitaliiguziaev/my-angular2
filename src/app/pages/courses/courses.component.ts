@@ -1,4 +1,3 @@
-import { BreadcrumbElement } from './../../components/breadcrumb/breadcrumbElement';
 import { BreadcrumbService } from './../../services/BreadcrumbService';
 import { Component } from '@angular/core';
 import { CourseService, Course } from './../../services/';

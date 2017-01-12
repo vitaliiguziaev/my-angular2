@@ -1,4 +1,3 @@
-import { BreadcrumbElement } from './../../../components/breadcrumb/breadcrumbElement';
 import { BreadcrumbService } from './../../../services/BreadcrumbService';
 import { DateValidator } from './../../../validators/date.validator';
 import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
