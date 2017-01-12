@@ -1,3 +1,5 @@
+import { BreadcrumbElement } from './../../components/breadcrumb/breadcrumbElement';
+import { BreadcrumbService } from './../../services/BreadcrumbService';
 import { Component } from '@angular/core';
 import { CourseService, Course } from './../../services/';
 import { Router } from '@angular/router';
@@ -10,10 +12,12 @@ import { Router } from '@angular/router';
 export class CoursesComponent {
     courses: Course[] = [];
 
-    constructor(private courseService: CourseService, private router: Router) {
+    constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService) {
     }
 
     ngOnInit() {
+        this.breadcrumbService.clean();
+        this.breadcrumbService.add(new BreadcrumbElement('/courses', 'Courses'));
         this.getCourses();
     }
 

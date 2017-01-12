@@ -1,3 +1,5 @@
+import { BreadcrumbElement } from './../../../components/breadcrumb/breadcrumbElement';
+import { BreadcrumbService } from './../../../services/BreadcrumbService';
 import { DateValidator } from './../../../validators/date.validator';
 import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
 import { Subscription } from 'rxjs/Subscription';
@@ -19,22 +21,32 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     id: number;
     course: Course;
     isCreateCourse: boolean;
+    breadcrumbLink:string;
 
     constructor(
         private courseService: CourseService,
         private route: ActivatedRoute,
         private router: Router,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private breadcrumbService: BreadcrumbService
     ) { }
 
     ngOnInit(): void {
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
+
+            this.breadcrumbService.clean();
+            this.breadcrumbService.add(new BreadcrumbElement('/courses', 'Courses'));
+
             if (!this.id) {
                 this.isCreateCourse = true;
                 this.course = new Course(0, 'New Course', null, null, null, null);
+                this.breadcrumbLink = '/courses/new';
+                this.breadcrumbService.add(new BreadcrumbElement(this.breadcrumbLink, 'New Course'));
             } else {
                 this.courseService.getCourse(this.id).subscribe(course => this.course = course);
+                this.breadcrumbLink = '/courses/' + this.id;
+                this.breadcrumbService.add(new BreadcrumbElement(this.breadcrumbLink, this.course.title));
             }
         });
         this.buildForm();

@@ -1,4 +1,5 @@
 /* COMPONENTS */
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ModalErrorWindow, ModalContent } from './components/modal-error-window/modal-error-window.component';
 import { DurationComponent } from './components/duration/duration.component';
 import { CourseRowComponent } from './pages/courses/courses-list/course-row/course-row.component';
@@ -19,7 +20,7 @@ import { LoggedInGuard } from './guards/LoggedInGuard';
 import { NumberToTime } from './pipes/numberToTime.pipe';
 
 /* SERVICES */
-import { LoginService, CourseService } from './services/';
+import { LoginService, CourseService, BreadcrumbService } from './services/';
 
 /* ROUTES */
 import { ROUTES } from './app.routes';
@@ -46,7 +47,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DurationComponent,
     ModalErrorWindow,
     ModalContent,
-    DateLimiterDirective
+    DateLimiterDirective,
+    BreadcrumbComponent
   ],
   entryComponents: [ModalContent],
   imports: [
@@ -59,7 +61,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     LoginService,
     CourseService,
-    LoggedInGuard
+    LoggedInGuard,
+    BreadcrumbService
   ]
 })
 

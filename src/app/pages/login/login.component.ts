@@ -1,3 +1,4 @@
+import { BreadcrumbService } from './../../services/BreadcrumbService';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService, User } from './../../services';
@@ -13,7 +14,8 @@ export class LoginComponent {
     private password: string;
     private buttonIsPressed: boolean = false;
 
-    constructor(private loginService: LoginService, private router: Router) {
+    constructor(private loginService: LoginService, private router: Router, private breadcrumbService: BreadcrumbService) {
+        this.breadcrumbService.clean();
     }
 
     logIn() {
