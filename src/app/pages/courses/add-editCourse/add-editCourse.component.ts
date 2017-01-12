@@ -1,3 +1,4 @@
+import { DateValidator } from './../../../validators/date.validator';
 import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
 import { Subscription } from 'rxjs/Subscription';
 import { Course, CourseService } from './../../../services/CourseService';
@@ -48,7 +49,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         this.courseForm = this.fb.group({
             'title': [this.course.title, Validators.required],
             'description': [this.course.description, Validators.required],
-            'date': [datePipe.transform(this.course.date, 'dd.MM.yyyy'), Validators.required],
+            'date': [datePipe.transform(this.course.date, 'dd.MM.yyyy'), [Validators.required, DateValidator]],
             'duration': [this.course.duration, Validators.required],
         });
     }
@@ -121,7 +122,8 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             'required': 'Duration is required.',
         },
         'date': {
-            'required': 'Date is required.'
+            'required': 'Date is required.',
+            'incorrect_date': 'Date is incorrect (required format dd.MM.yyyy).'
         }
     };
 }
