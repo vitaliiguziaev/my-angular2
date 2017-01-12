@@ -16,9 +16,13 @@ export class CoursesComponent {
     }
 
     ngOnInit() {
-        this.breadcrumbService.clean();
-        this.breadcrumbService.add(new BreadcrumbElement('/courses', 'Courses'));
+        this.setBreadcrumb();
         this.getCourses();
+    }
+    
+    setBreadcrumb() {
+        this.breadcrumbService.clean();
+        this.breadcrumbService.add('/courses', 'Courses');
     }
 
     getCourses() {

@@ -21,7 +21,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     id: number;
     course: Course;
     isCreateCourse: boolean;
-    breadcrumbLink:string;
+    breadcrumbLink: string;
 
     constructor(
         private courseService: CourseService,
@@ -34,22 +34,28 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
-
-            this.breadcrumbService.clean();
-            this.breadcrumbService.add(new BreadcrumbElement('/courses', 'Courses'));
-
             if (!this.id) {
                 this.isCreateCourse = true;
                 this.course = new Course(0, 'New Course', null, null, null, null);
-                this.breadcrumbLink = '/courses/new';
-                this.breadcrumbService.add(new BreadcrumbElement(this.breadcrumbLink, 'New Course'));
             } else {
                 this.courseService.getCourse(this.id).subscribe(course => this.course = course);
-                this.breadcrumbLink = '/courses/' + this.id;
-                this.breadcrumbService.add(new BreadcrumbElement(this.breadcrumbLink, this.course.title));
             }
         });
+        this.setBreadcrumb();
         this.buildForm();
+    }
+
+    setBreadcrumb() {
+        this.breadcrumbService.clean();
+        this.breadcrumbLink = '/courses';
+        this.breadcrumbService.add(this.breadcrumbLink, 'Courses');
+
+        if (this.isCreateCourse) {
+            this.breadcrumbLink = this.breadcrumbLink + '/new';
+        } else {
+            this.breadcrumbLink = this.breadcrumbLink + '/' + this.id;
+        }
+        this.breadcrumbService.add(this.breadcrumbLink, this.course.title);
     }
 
     ngOnDestroy() {
@@ -63,6 +69,10 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             'description': [this.course.description, Validators.required],
             'date': [datePipe.transform(this.course.date, 'dd.MM.yyyy'), [Validators.required, DateValidator]],
             'duration': [this.course.duration, Validators.required],
+        });
+
+        this.courseForm.controls['title'].valueChanges.subscribe((title: string) => {
+            this.breadcrumbService.updateTitle(this.breadcrumbLink, title);
         });
     }
 

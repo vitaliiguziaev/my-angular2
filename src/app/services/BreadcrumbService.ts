@@ -9,16 +9,16 @@ export class BreadcrumbService {
         return this.breadcrumbs;
     }
 
-    add(value: BreadcrumbElement) {
-        this.breadcrumbs.push(value);
+    add(link: string, title: string) {
+        this.breadcrumbs.push(new BreadcrumbElement(link, title));
     }
 
-    updateTitle(updatedBreadcrumb: BreadcrumbElement) {
-        let ndx = this.breadcrumbs.findIndex(x => x.link == updatedBreadcrumb.link);
-        this.breadcrumbs[ndx].title = updatedBreadcrumb.title;
+    updateTitle(link: string, title: string) {
+        let ndx = this.breadcrumbs.findIndex(x => x.link == link);
+        this.breadcrumbs[ndx].title = title;
     }
 
-    clean(){
+    clean() {
         this.breadcrumbs.length = 0;
     }
 }

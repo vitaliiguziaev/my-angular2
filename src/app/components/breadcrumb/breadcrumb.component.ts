@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
     template: `
       <div id="view-breadcrumb">
           <ul class="breadcrumb">
-              <li *ngFor="let breadcrumb of breadcrumbs; let i = index; let last = last">
-                  <a *ngIf="!last" routerLink="breadcrumb.link">{{breadcrumb.title}}</a>
+              <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
+                  <a *ngIf="!last" [routerLink]="breadcrumb.link">{{breadcrumb.title}}</a>
                   <span *ngIf="!last"> > </span>
                   <span *ngIf="last">{{breadcrumb.title}}</span>
               </li>
