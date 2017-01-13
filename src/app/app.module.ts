@@ -20,7 +20,7 @@ import { LoggedInGuard } from './guards/LoggedInGuard';
 import { NumberToTime } from './pipes/numberToTime.pipe';
 
 /* SERVICES */
-import { LoginService, CourseService, BreadcrumbService } from './services/';
+import { LoginService, CourseService, BreadcrumbService, AuthorService } from './services/';
 
 /* ROUTES */
 import { ROUTES } from './app.routes';
@@ -61,6 +61,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     LoginService,
     CourseService,
+    AuthorService,
     LoggedInGuard,
     BreadcrumbService
   ]

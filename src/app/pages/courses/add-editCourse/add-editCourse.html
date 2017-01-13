@@ -1,41 +1,52 @@
 <div class="container" style="margin-top: 50px">
-<div class="row">
-  <div>
-    <form [formGroup]="courseForm">
-      <div class="form-group row">
-        <label for="title" class="offset-sm-3 col-sm-1 col-form-label">Title</label>
-        <div class="col-sm-2">
-          <input type="text" class="form-control" name="title" [formControl]="courseForm.controls.title" />
+  <div class="row">
+    <div>
+      <form [formGroup]="courseForm">
+        <div class="form-group row">
+          <label for="title" class="offset-sm-3 col-sm-1 col-form-label">Title</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" name="title" [formControl]="courseForm.controls.title" />
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="description" class="offset-sm-3 col-sm-1 col-form-label">Description</label>
-        <div class="col-sm-4">
-          <textarea type="text" class="form-control" name="description" [formControl]="courseForm.controls.description"></textarea>
+        <div class="form-group row">
+          <label for="description" class="offset-sm-3 col-sm-1 col-form-label">Description</label>
+          <div class="col-sm-4">
+            <textarea type="text" class="form-control" name="description" [formControl]="courseForm.controls.description"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="date" class="offset-sm-3 col-sm-1 col-form-label">Date</label>
-        <div class="col-sm-2">
-          <input type="text" class="form-control" name="date" [formControl]="courseForm.controls.date" date-limiter/>
+        <div class="form-group row">
+          <label for="date" class="offset-sm-3 col-sm-1 col-form-label">Date</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" name="date" [formControl]="courseForm.controls.date" date-limiter/>
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="duration" class="offset-sm-3 col-sm-1 col-form-label">Duration</label>
-        <div class="col-sm-1">
-          <input type="number" class="form-control" name="duration" [formControl]="courseForm.controls.duration"/>
+        <div class="form-group row">
+          <label for="duration" class="offset-sm-3 col-sm-1 col-form-label">Duration</label>
+          <div class="col-sm-1">
+            <input type="number" class="form-control" name="duration" [formControl]="courseForm.controls.duration" />
+          </div>
+          <duration-view [duration]="courseForm.controls.duration.value"></duration-view>
         </div>
-        <duration-view [duration]="courseForm.controls.duration.value"></duration-view>
-      </div>
-      <div class="form-group row">
-        <div class="offset-sm-4 col-sm-2">
-          <button type="submit" class="btn btn-success" (click)="save(courseForm.value)">Save</button>
-          <button type="submit" class="btn btn-primary" (click)="cancel()">Cancel</button>
+        <div class="form-group row">
+          <label for="authors" class="offset-sm-3 col-sm-1 col-form-label">Authors</label>
+          <div class="col-sm-2">
+            </select>
+          </div>
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-2">
+            </select>
+          </div>
         </div>
-      </div>
-    </form>
+        <div class="form-group row">
+          <div class="offset-sm-4 col-sm-2">
+            <button type="submit" class="btn btn-success" (click)="save(courseForm.value)">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
-<template ngbModalContainer></template>
-<modal-error-window></modal-error-window>
+  <template ngbModalContainer></template>
+  <modal-error-window></modal-error-window>
 </div>
