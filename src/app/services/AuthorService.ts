@@ -1,3 +1,4 @@
+import { Observable, Observer } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -13,9 +14,11 @@ export class AuthorService {
             new Author(6, 'Author 6'),
         ];
     }
-
-    getAuthorsList(): Author[] {
-        return this.authors;
+    getAuthorsList(): Observable<Author[]> {
+        return Observable.create((observer: Observer<Author[]>) => {
+            observer.next(this.authors);
+            observer.complete();
+        });
     }
 }
 

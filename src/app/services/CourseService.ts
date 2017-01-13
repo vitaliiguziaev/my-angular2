@@ -9,10 +9,10 @@ export class CourseService {
 
     constructor() {
         this.courses = [
-            new Course(1, 'Course 1', 'description 1', 90, new Date(), null),
-            new Course(2, 'Course 2', 'description 2', 110, new Date(), null),
-            new Course(3, 'Course 3', 'description 3', 120, new Date(), null),
-            new Course(4, 'Course 4', 'description 4', 130, new Date(), null),
+            new Course(1, 'Course 1', 'description 1', 90, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
+            new Course(2, 'Course 2', 'description 2', 110, new Date(), [new Author(5, 'Author 5')]),
+            new Course(3, 'Course 3', 'description 3', 120, new Date(), [new Author(5, 'Author 5')]),
+            new Course(4, 'Course 4', 'description 4', 130, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
         ];
     }
 

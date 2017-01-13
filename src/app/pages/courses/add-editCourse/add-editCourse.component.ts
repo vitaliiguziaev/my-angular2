@@ -45,7 +45,13 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         });
 
         this.authors = this.course.authors;
-        this.allAuthors = this.authorService.getAuthorsList();
+        this.authorService.getAuthorsList().subscribe(authorsFromService => {
+            if (!this.authors) {
+                this.allAuthors = authorsFromService;
+            } else {
+                this.allAuthors = authorsFromService.filter(x => !this.authors.find(z => z.id == x.id));
+            }
+        });
 
         this.setBreadcrumb();
         this.buildForm();
