@@ -30,11 +30,17 @@
         <div class="form-group row">
           <label for="authors" class="offset-sm-3 col-sm-1 col-form-label">Authors</label>
           <div class="col-sm-2">
+            <select size="4" style="width:150px;" [formControl]="courseForm.controls.authors">
+               <option *ngFor="let author of authors" (click)="onSelectAuthor(author.id,authors)">{{author.name}}</option>
             </select>
           </div>
           <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary" style="margin:3px;" (click)="moveAuthorInAll()"> > </button>
+            <button type="submit" class="btn btn-primary" style="margin:3px;" (click)="moveAuthorFromAll()"> < </button>
           </div>
           <div class="col-sm-2">
+            <select size="4" style="width: 150px;">
+              <option *ngFor="let author of allAuthors" (click)="onSelectAuthor(author.id,allAuthors)">{{author.name}}</option>
             </select>
           </div>
         </div>
