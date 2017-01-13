@@ -1,4 +1,4 @@
-import { NumberToTime } from './../../pipes/numberToTime.pipe';
+import { NumberToTime } from './../../pipes';
 import { Component } from '@angular/core';
 
 @Component({

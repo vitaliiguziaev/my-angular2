@@ -1,23 +1,17 @@
 /* COMPONENTS */
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { ModalErrorWindow, ModalContent } from './components/modal-error-window/modal-error-window.component';
-import { DurationComponent } from './components/duration/duration.component';
-import { CourseRowComponent } from './pages/courses/courses-list/course-row/course-row.component';
-import { CoursesListComponent } from './pages/courses/courses-list/courses-list.component';
-import { SearchCoursesComponent } from './pages/courses/searchCourses/searchCourses.component';
-import { CoursesComponent, AddEditCourseComponent } from './pages/courses';
-import { LogoffComponent } from './components/';
+import { CoursesComponent, AddEditCourseComponent, SearchCoursesComponent, CoursesListComponent, CourseRowComponent } from './pages/courses';
+import { LogoffComponent, DurationComponent, ModalErrorWindow, ModalContent, BreadcrumbComponent } from './components';
 import { LoginComponent } from './pages/login';
 import { AppComponent } from './app.component';
 
 /* DIRECTIVES */
-import { DateLimiterDirective } from './directives/date-limiter.directive';
+import { DateLimiterDirective } from './directives';
 
 /* GUARDS */
-import { LoggedInGuard } from './guards/LoggedInGuard';
+import { LoggedInGuard } from './guards';
 
 /* PIPES */
-import { NumberToTime } from './pipes/numberToTime.pipe';
+import { NumberToTime } from './pipes';
 
 /* SERVICES */
 import { LoginService, CourseService, BreadcrumbService, AuthorService } from './services/';

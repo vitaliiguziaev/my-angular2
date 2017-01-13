@@ -1,4 +1,4 @@
-import { Course } from './../../../../services/CourseService';
+import { Course } from './../../../../services';
 import { Component, EventEmitter } from '@angular/core';
 
 @Component({

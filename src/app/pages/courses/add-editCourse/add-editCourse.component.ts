@@ -1,8 +1,7 @@
-import { DateValidator } from './../../../validators/date.validator';
-import { AuthorsValidator } from './../../../validators/authors.validator';
-import { ModalErrorWindow } from './../../../components/modal-error-window/modal-error-window.component';
+import { AuthorsValidator, DateValidator } from './../../../validators';
+import { ModalErrorWindow } from './../../../components';
 import { Subscription } from 'rxjs/Subscription';
-import { Course, CourseService, Author, AuthorService, BreadcrumbService } from './../../../services/';
+import { Course, CourseService, Author, AuthorService, BreadcrumbService } from './../../../services';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';

@@ -1,7 +1,6 @@
-import { BreadcrumbService } from './../../services/BreadcrumbService';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService, User } from './../../services';
+import { LoginService, User, BreadcrumbService } from './../../services';
 
 @Component({
     selector: 'login-page',

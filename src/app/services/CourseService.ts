@@ -1,4 +1,4 @@
-import { CoursesComponent } from './../pages/courses/courses.component';
+import { CoursesComponent } from './../pages/courses';
 import { Observable, Observer } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Author } from './AuthorService';

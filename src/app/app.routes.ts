@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login';
 import { CoursesComponent, AddEditCourseComponent } from './pages/courses';
-import { LoggedInGuard } from './guards/LoggedInGuard';
+import { LoggedInGuard } from './guards';
 
 export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
