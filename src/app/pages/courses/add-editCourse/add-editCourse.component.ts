@@ -10,7 +10,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'add-edit-course',
-    templateUrl: './add-editCourse.html'
+    templateUrl: './add-editCourse.html',
+    providers: [AuthorService]
 })
 
 export class AddEditCourseComponent implements OnInit, OnDestroy {
@@ -105,7 +106,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             });
         }
     }
- 
+
     moveAuthorInAll() {
         if (!this.authors || this.authors.length == 0) {
             return;
