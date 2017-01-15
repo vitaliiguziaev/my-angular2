@@ -1,0 +1,12 @@
+.error {
+    padding: 5px;
+    width: 450px;
+    position: absolute;
+    right: 10px;
+    z-index: 100;
+    display: none; 
+  }
+   
+  .visible {
+   display: inline;
+  }

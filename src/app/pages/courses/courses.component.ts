@@ -1,6 +1,5 @@
-import { BreadcrumbService } from './../../services/BreadcrumbService';
 import { Component } from '@angular/core';
-import { CourseService, Course } from './../../services/';
+import { CourseService, Course, BreadcrumbService } from './../../services/';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +17,7 @@ export class CoursesComponent {
         this.setBreadcrumb();
         this.getCourses();
     }
-    
+
     setBreadcrumb() {
         this.breadcrumbService.clean();
         this.breadcrumbService.add('/courses', 'Courses');

@@ -1,4 +1,4 @@
-import { CoursesComponent } from './../pages/courses';
+import { NotificationService } from './NotificationService';
 import { Observable, Observer } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Author } from './AuthorService';
@@ -7,7 +7,7 @@ import { Author } from './AuthorService';
 export class CourseService {
     courses: Course[] = [];
 
-    constructor() {
+    constructor(private notification: NotificationService) {
         this.courses = [
             new Course(1, 'Course 1', 'description 1', 90, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
             new Course(2, 'Course 2', 'description 2', 110, new Date(), [new Author(5, 'Author 5')]),
@@ -33,7 +33,7 @@ export class CourseService {
 
     addCourse(course: Course) {
         return Observable.create((observer: Observer<Course>) => {
-            course.id = this.courses.length+1;
+            course.id = this.courses.length + 1;
             this.courses.push(course);
             observer.next(course);
             observer.complete();
@@ -52,6 +52,14 @@ export class CourseService {
 
     deleteCourse(course: Course): Observable<void> {
         return Observable.create((observer: Observer<void>) => {
+            try {
+                let number = this.getRandomNumber(1, 5);
+                if (number % 2 == 0) {
+                    throw new Error('Server return bad response!');
+                }
+            } catch (error) {
+                this.notification.show(error);
+            }
             this.courses = this.courses.filter(x => x.id !== course.id);
             observer.complete();
         });
@@ -66,6 +74,11 @@ export class CourseService {
             observer.complete();
         });
     }
+
+    getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
 }
 
 export class Course {
