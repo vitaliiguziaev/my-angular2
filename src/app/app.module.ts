@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/login';
 import { AppComponent } from './app.component';
 
 /* DIRECTIVES */
-import { DateLimiterDirective } from './directives';
+import { DateLimiterDirective, NumbersDirective } from './directives';
 
 /* GUARDS */
 import { LoggedInGuard } from './guards';
@@ -42,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalErrorWindow,
     ModalContent,
     DateLimiterDirective,
+    NumbersDirective,
     BreadcrumbComponent,
     ErrorNotificationComponent
   ],
