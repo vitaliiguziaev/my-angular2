@@ -7,10 +7,12 @@ import { Component } from '@angular/core';
 })
 
 export class ErrorNotificationComponent {
+    private static instance: ErrorNotificationComponent;
     private message: string;
     private isVisible: boolean = false;
 
     constructor() {
+        return ErrorNotificationComponent.instance = ErrorNotificationComponent.instance || this;
     }
 
     show(message: string) {
