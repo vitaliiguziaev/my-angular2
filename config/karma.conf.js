@@ -1,6 +1,7 @@
 /**
  * @author: @AngularClass
  */
+var DEBUG = process.argv.includes('--debug');
 
 module.exports = function(config) {
   var testWebpackConfig = require('./webpack.test.js')({env: 'test'});
