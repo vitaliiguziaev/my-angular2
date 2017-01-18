@@ -41,6 +41,7 @@ export class CoursesComponent {
     }
 
     addCourse() {
+        this.router.navigate(['/' + AppPaths.COURSES_PAGE + '/new']);
     }
 
     searchCourses(query: string) {
