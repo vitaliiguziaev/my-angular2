@@ -1,3 +1,6 @@
+/* CONSTANTS */
+import { AppPaths } from './app.routes';
+
 /* COMPONENTS */
 import { CoursesComponent, AddEditCourseComponent, SearchCoursesComponent, CoursesListComponent, CourseRowComponent } from './pages/courses';
 import { LogoffComponent, DurationComponent, ModalErrorWindow, ModalContent, BreadcrumbComponent, ErrorNotificationComponent } from './components';
@@ -55,6 +58,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
+    AppPaths,
     LoginService,
     CourseService,
     AuthorService,

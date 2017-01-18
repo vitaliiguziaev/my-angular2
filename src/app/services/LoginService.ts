@@ -1,3 +1,4 @@
+import { AppPaths } from './../app.routes';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -30,7 +31,7 @@ export class LoginService {
 
     logOff(): boolean {
         localStorage.removeItem(LoginService.LOGIN_KEY);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/'+ AppPaths.LOGIN_PAGE]);
         return false;
     }
 

@@ -1,3 +1,4 @@
+import { AppPaths } from './../../app.routes';
 import { Component } from '@angular/core';
 import { CourseService, Course, BreadcrumbService } from './../../services/';
 import { Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class CoursesComponent {
 
     setBreadcrumb() {
         this.breadcrumbService.clean();
-        this.breadcrumbService.add('/courses', 'Courses');
+        this.breadcrumbService.add('/' + AppPaths.COURSES_PAGE, 'Courses');
     }
 
     getCourses() {
@@ -36,11 +37,10 @@ export class CoursesComponent {
     }
 
     editCourse(course: Course) {
-        this.router.navigate(['/courses', course.id]);
+        this.router.navigate(['/'+ AppPaths.COURSES_PAGE, course.id]);
     }
 
     addCourse() {
-        this.router.navigate(['/courses/new']);
     }
 
     searchCourses(query: string) {

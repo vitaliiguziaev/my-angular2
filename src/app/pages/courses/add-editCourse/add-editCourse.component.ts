@@ -1,3 +1,4 @@
+import { AppPaths } from './../../../app.routes';
 import { AuthorsValidator, DateValidator } from './../../../validators';
 import { ModalErrorWindow } from './../../../components';
 import { Subscription } from 'rxjs/Subscription';
@@ -59,7 +60,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
 
     setBreadcrumb() {
         this.breadcrumbService.clean();
-        this.breadcrumbLink = '/courses';
+        this.breadcrumbLink = '/' + AppPaths.COURSES_PAGE;
         this.breadcrumbService.add(this.breadcrumbLink, 'Courses');
 
         if (this.isCreateCourse) {
@@ -154,13 +155,13 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             } else {
                 this.courseService.editCourse(this.course).subscribe(course => { });
             }
-            this.router.navigate(['/courses']);
+            this.router.navigate(['/' + AppPaths.COURSES_PAGE]);
         }
         return false;
     }
 
     cancel(): boolean {
-        this.router.navigate(['/courses']);
+        this.router.navigate(['/' + AppPaths.COURSES_PAGE]);
         return false;
     }
 

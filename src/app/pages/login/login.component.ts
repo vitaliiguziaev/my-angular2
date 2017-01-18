@@ -1,3 +1,4 @@
+import { AppPaths } from './../../app.routes';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService, User, BreadcrumbService } from './../../services';
@@ -21,7 +22,7 @@ export class LoginComponent {
         this.loginService.login(this.login, this.password)
             .subscribe(res => {
                 if (res !== null) {
-                    this.router.navigate(['/courses']);
+                    this.router.navigate(['/' + AppPaths.COURSES_PAGE]);
                 } else {
                     this.password = '';
                     this.buttonIsPressed = true;

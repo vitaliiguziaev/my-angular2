@@ -34,7 +34,7 @@ export class CourseService {
     addCourse(course: Course) {
         return Observable.create((observer: Observer<Course>) => {
             course.id = this.courses.length + 1;
-            this.courses.push(course);
+            this.courses = this.courses.concat(course);
             observer.next(course);
             observer.complete();
         });
