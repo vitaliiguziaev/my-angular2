@@ -21,7 +21,7 @@ export class CoursesComponent {
 
     setBreadcrumb() {
         this.breadcrumbService.clean();
-        this.breadcrumbService.add('/' + AppPaths.COURSES_PAGE, 'Courses');
+        this.breadcrumbService.add(AppPaths.COURSES_PAGE, 'Courses');
     }
 
     getCourses() {
@@ -37,11 +37,11 @@ export class CoursesComponent {
     }
 
     editCourse(course: Course) {
-        this.router.navigate(['/'+ AppPaths.COURSES_PAGE, course.id]);
+        this.router.navigate([AppPaths.COURSES_PAGE, course.id]);
     }
 
     addCourse() {
-        this.router.navigate(['/' + AppPaths.COURSES_PAGE + '/new']);
+        this.router.navigate([AppPaths.COURSES_PAGE + '/new']);
     }
 
     searchCourses(query: string) {

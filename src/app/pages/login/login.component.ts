@@ -22,7 +22,7 @@ export class LoginComponent {
         this.loginService.login(this.login, this.password)
             .subscribe(res => {
                 if (res !== null) {
-                    this.router.navigate(['/' + AppPaths.COURSES_PAGE]);
+                    this.router.navigate([AppPaths.COURSES_PAGE]);
                 } else {
                     this.password = '';
                     this.buttonIsPressed = true;

@@ -6,6 +6,7 @@ import { Author } from './AuthorService';
 @Injectable()
 export class CourseService {
     courses: Course[] = [];
+    newId: number;
 
     constructor(private notification: NotificationService) {
         this.courses = [
@@ -14,6 +15,7 @@ export class CourseService {
             new Course(3, 'Course 3', 'description 3', 120, new Date(), [new Author(5, 'Author 5')]),
             new Course(4, 'Course 4', 'description 4', 130, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
         ];
+        this.newId = this.courses.length + 1;
     }
 
     getCourse(id: number): Observable<Course> {
@@ -33,8 +35,8 @@ export class CourseService {
 
     addCourse(course: Course) {
         return Observable.create((observer: Observer<Course>) => {
-            course.id = this.courses.length + 1;
-            this.courses = this.courses.concat(course);
+            course.id = this.newId;
+            this.courses.push(course);
             observer.next(course);
             observer.complete();
         });

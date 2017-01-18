@@ -60,7 +60,7 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
 
     setBreadcrumb() {
         this.breadcrumbService.clean();
-        this.breadcrumbLink = '/' + AppPaths.COURSES_PAGE;
+        this.breadcrumbLink = AppPaths.COURSES_PAGE;
         this.breadcrumbService.add(this.breadcrumbLink, 'Courses');
 
         if (this.isCreateCourse) {
@@ -155,13 +155,13 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             } else {
                 this.courseService.editCourse(this.course).subscribe(course => { });
             }
-            this.router.navigate(['/' + AppPaths.COURSES_PAGE]);
+            this.router.navigate([AppPaths.COURSES_PAGE]);
         }
         return false;
     }
 
     cancel(): boolean {
-        this.router.navigate(['/' + AppPaths.COURSES_PAGE]);
+        this.router.navigate([AppPaths.COURSES_PAGE]);
         return false;
     }
 

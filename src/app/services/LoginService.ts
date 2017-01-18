@@ -31,7 +31,7 @@ export class LoginService {
 
     logOff(): boolean {
         localStorage.removeItem(LoginService.LOGIN_KEY);
-        this.router.navigate(['/'+ AppPaths.LOGIN_PAGE]);
+        this.router.navigate([AppPaths.LOGIN_PAGE]);
         return false;
     }
 
