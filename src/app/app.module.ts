@@ -22,12 +22,16 @@ import { LoginService, CourseService, BreadcrumbService, AuthorService, Notifica
 /* ROUTES */
 import { ROUTES } from './app.routes';
 
+/* REDUX */
+import { AppActions } from './app.actions';
+
 /* ANGULAR */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -55,7 +59,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.provideStore({})
   ],
   providers: [
     AppPaths,
@@ -65,7 +70,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoggedInGuard,
     BreadcrumbService,
     ErrorNotificationComponent,
-    NotificationService
+    NotificationService,
+    AppActions
   ]
 })
 
