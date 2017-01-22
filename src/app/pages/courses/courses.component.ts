@@ -20,11 +20,13 @@ export class CoursesComponent extends PageComponent {
     }
 
     ngOnInit() {
+        // this.courseService.getCoursesList();
         this.setBreadcrumb();
     }
 
     onInit() {
         this._subscription(
+            this.store.select('courses').subscribe((items: Course[]) => this.courses = items)
         );
     }
 
