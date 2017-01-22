@@ -1,3 +1,4 @@
+import { courseListReducers } from './pages/courses/courses.reducers';
 /* CONSTANTS */
 import { AppPaths } from './app.routes';
 
@@ -60,7 +61,7 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.provideStore({})
+    StoreModule.provideStore({courses: courseListReducers})
   ],
   providers: [
     AppPaths,

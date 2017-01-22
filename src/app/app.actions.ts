@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AppActions {
     static COURSES_LOADED = "COURSES_LOADED";
     static ADD_COURSE = "ADD_COURSE";
-    static EDIT_COURSE = "EDIT_COURSE";
+    static UPDATE_COURSE = "UPDATE_COURSE";
     static DELETE_COURSE = "DELETE_COURSE";
     static FILTER_COURSES = "FILTER_COURSES";
 

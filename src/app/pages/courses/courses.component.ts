@@ -1,3 +1,7 @@
+import { AppActions } from './../../app.actions';
+import { PageComponent } from './../page.component';
+import { courseListReducers } from './courses.reducers';
+import { Store, Action, combineReducers } from '@ngrx/store';
 import { AppPaths } from './../../app.routes';
 import { Component } from '@angular/core';
 import { CourseService, Course, BreadcrumbService } from './../../services/';
@@ -8,15 +12,20 @@ import { Router } from '@angular/router';
     templateUrl: './courses.html'
 })
 
-export class CoursesComponent {
+export class CoursesComponent extends PageComponent {
     courses: Course[] = [];
 
-    constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService) {
+    constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>, private appActions: AppActions) {
+        super(store, courseListReducers);
     }
 
     ngOnInit() {
         this.setBreadcrumb();
-        this.getCourses();
+    }
+
+    onInit() {
+        this._subscription(
+        );
     }
 
     setBreadcrumb() {
@@ -24,15 +33,11 @@ export class CoursesComponent {
         this.breadcrumbService.add(AppPaths.COURSES_PAGE, 'Courses');
     }
 
-    getCourses() {
-        this.courseService.getCoursesList().subscribe(courses => this.courses = courses);
-    }
-
     deleteCourse(course: Course) {
         let confirmDialog = confirm("Are you sure you want to remove this course?");
         if (confirmDialog == true) {
             this.courseService.deleteCourse(course).subscribe(() => { });
-            this.getCourses();
+            // this.getCourses();
         }
     }
 

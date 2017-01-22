@@ -1,3 +1,4 @@
+import { AppActions } from './../app.actions';
 import { NotificationService } from './NotificationService';
 import { Observable, Observer } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -8,7 +9,7 @@ export class CourseService {
     courses: Course[] = [];
     newId: number;
 
-    constructor(private notification: NotificationService) {
+    constructor(private notification: NotificationService, private appActions: AppActions) {
         this.courses = [
             new Course(1, 'Course 1', 'description 1', 90, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
             new Course(2, 'Course 2', 'description 2', 110, new Date(), [new Author(5, 'Author 5')]),
@@ -16,6 +17,7 @@ export class CourseService {
             new Course(4, 'Course 4', 'description 4', 130, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
         ];
         this.newId = this.courses.length;
+        this.courses.forEach(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
     }
 
     getCourse(id: number): Observable<Course> {
@@ -65,6 +67,8 @@ export class CourseService {
             }
             this.courses = this.courses.filter(x => x.id !== course.id);
             observer.complete();
+        }).subscribe(res => {
+            this.appActions.dispatch(AppActions.DELETE_COURSE, res);
         });
     }
 
