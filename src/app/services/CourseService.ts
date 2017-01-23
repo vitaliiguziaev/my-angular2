@@ -17,7 +17,6 @@ export class CourseService {
             new Course(4, 'Course 4', 'description 4', 130, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
         ];
         this.newId = this.courses.length;
-        this.courses.forEach(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
     }
 
     getCourse(id: number): Observable<Course> {
@@ -28,11 +27,14 @@ export class CourseService {
         });
     }
 
-    getCoursesList(): Observable<Course[]> {
-        return Observable.create((observer: Observer<Array<Course>>) => {
-            observer.next(this.courses);
-            observer.complete();
-        });
+    buildCoursesList() {
+        // Observable.create((observer: Observer<Array<Course>>) => {
+        //     observer.next(this.courses);
+        //     observer.complete();
+        // }).subscribe((items: Course[]) => {
+        //     items.map(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
+        // });
+        this.courses.map(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
     }
 
     addCourse(course: Course) {
@@ -42,6 +44,8 @@ export class CourseService {
             this.courses.push(course);
             observer.next(course);
             observer.complete();
+        }).subscribe(x => {
+            this.appActions.dispatch(AppActions.ADD_COURSE, x);
         });
     }
 
@@ -52,6 +56,8 @@ export class CourseService {
             let editCourse = Object.assign(oldCourse, course);
             observer.next(editCourse);
             observer.complete();
+        }).subscribe(x => {
+            this.appActions.dispatch(AppActions.UPDATE_COURSE, x);
         });
     }
 

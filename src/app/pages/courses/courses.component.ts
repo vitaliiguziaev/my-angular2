@@ -1,33 +1,36 @@
 import { AppActions } from './../../app.actions';
 import { PageComponent } from './../page.component';
-import { courseListReducers } from './courses.reducers';
+import { coursesReducer } from './courses.reducers';
 import { Store, Action, combineReducers } from '@ngrx/store';
 import { AppPaths } from './../../app.routes';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CourseService, Course, BreadcrumbService } from './../../services/';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router';   
 
 @Component({
     selector: 'list-courses',
-    templateUrl: './courses.html'
+    templateUrl: './courses.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CoursesComponent extends PageComponent {
     courses: Course[] = [];
 
     constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>, private appActions: AppActions) {
-        super(store, courseListReducers);
+        super(store, coursesReducer);
     }
 
     ngOnInit() {
-        // this.courseService.getCoursesList();
+        this.courseService.buildCoursesList();
         this.setBreadcrumb();
+        this._subscription(
+            this.store.select(state => state.coursesReducer).subscribe((items: Course[]) => {
+                this.courses = items;
+            }));
     }
 
     onInit() {
-        this._subscription(
-            this.store.select('courses').subscribe((items: Course[]) => this.courses = items)
-        );
+
     }
 
     setBreadcrumb() {

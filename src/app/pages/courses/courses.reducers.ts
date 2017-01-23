@@ -1,14 +1,10 @@
 import { AppActions } from './../../app.actions';
 import { Course } from './../../services';
 
-export const courseListReducers = {
-    courses
-}
-
-function courses(state: Course[] = [], action) {
+export const coursesReducer = (state: Course[] = [], action) => {
     switch (action.type) {
-        case AppActions.COURSES_LOADED:
-            return action.payload;
+        // case AppActions.COURSES_LOADED:
+        //     return action.payload;
 
         case AppActions.ADD_COURSE:
             return [...state, action.payload];
