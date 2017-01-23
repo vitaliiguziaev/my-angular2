@@ -28,7 +28,7 @@ export class NumbersDirective {
         this.handleEvent($event)
     }
 
-    @HostListener('keyup', ['$event']) onChange($event) {
+    @HostListener('change', ['$event']) onChange($event) {
         this.handleEvent($event)
     }
 }
