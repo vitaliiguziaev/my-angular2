@@ -50,7 +50,7 @@ export class AddEditCourseComponent extends PageComponent {
                 this.course = this.courseService.getCourseFromStore(this.id);
             }
             this.authors = this.course.authors;
-            let authorsFromStore = this.authorService.getAuthorsFromStore();
+            let authorsFromStore = this.authorService.getAuthorsFromStore().slice();
             if (!this.authors) {
                 this.allAuthors = authorsFromStore;
             } else {
