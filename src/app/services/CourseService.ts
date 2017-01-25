@@ -20,7 +20,7 @@ export class CourseService {
         this.buildCoursesList();
     }
 
-    getCourse(id: number) {
+    getCourseFromStore(id: number) {
         let state = this.appActions.getState();
         let ndx = state.coursesReducer.findIndex(x => x.id == id);
         if (ndx >= 0) {
@@ -30,14 +30,13 @@ export class CourseService {
     }
 
     buildCoursesList() {
-        this.courses.map(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
+        this.appActions.dispatch(AppActions.COURSES_LOADED, this.courses);
     }
 
     addCourse(course: Course) {
         return Observable.create((observer: Observer<Course>) => {
             this.newId = this.newId + 1;
             course.id = this.newId;
-            this.courses.push(course);
             observer.next(course);
             observer.complete();
         }).subscribe(x => {

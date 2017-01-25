@@ -1,5 +1,6 @@
-import { coursesReducer } from './../courses.reducers';
+import { authorsReducer } from './../reducers/authors.reducers';
 import { AppActions } from './../../../app.actions';
+import { coursesReducer } from './../reducers/courses.reducers';
 import { Store } from '@ngrx/store';
 import { AppPaths } from './../../../app.routes';
 import { AuthorsValidator, DateValidator } from './../../../validators';
@@ -14,8 +15,7 @@ import { PageComponent } from './../../page.component';
 
 @Component({
     selector: 'add-edit-course',
-    templateUrl: './add-editCourse.html',
-    providers: [AuthorService]
+    templateUrl: './add-editCourse.html'
 })
 
 export class AddEditCourseComponent extends PageComponent {
@@ -38,7 +38,7 @@ export class AddEditCourseComponent extends PageComponent {
         private authorService: AuthorService,
         private store: Store<any>,
         private appActions: AppActions
-    ) { super(store, { coursesReducer }); }
+    ) { super(store, { coursesReducer,authorsReducer }); }
    
     onInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -46,19 +46,15 @@ export class AddEditCourseComponent extends PageComponent {
             if (!this.id) {
                 this.isCreateCourse = true;
                 this.course = new Course(0, 'New Course', null, null, null, null);
-            }
-        });
-        
-        if (!this.isCreateCourse) {
-           this.course = this.courseService.getCourse(this.id);
-        } 
-
-        this.authors = this.course.authors;
-        this.authorService.getAuthorsList().subscribe(authorsFromService => {
-            if (!this.authors) {
-                this.allAuthors = authorsFromService;
             } else {
-                this.allAuthors = authorsFromService.filter(x => !this.authors.find(z => z.id == x.id));
+                this.course = this.courseService.getCourseFromStore(this.id);
+            }
+            this.authors = this.course.authors;
+            let authorsFromStore = this.authorService.getAuthorsFromStore();
+            if (!this.authors) {
+                this.allAuthors = authorsFromStore;
+            } else {
+                this.allAuthors = authorsFromStore.filter(x => !this.authors.find(z => z.id == x.id));
             }
         });
 

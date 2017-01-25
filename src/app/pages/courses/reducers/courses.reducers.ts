@@ -1,8 +1,10 @@
-import { AppActions } from './../../app.actions';
-import { Course } from './../../services';
+import { AppActions } from './../../../app.actions';
+import { Course } from './../../../services/CourseService';
 
 export const coursesReducer = (state: Course[] = [], action) => {
     switch (action.type) {
+        case AppActions.COURSES_LOADED:
+            return action.payload;
 
         case AppActions.ADD_COURSE:
             return [...state, action.payload];
@@ -20,7 +22,7 @@ export const coursesReducer = (state: Course[] = [], action) => {
 
         case AppActions.UPDATE_COURSE:
             return state.map(x => {
-                if (x.id === action.payload.id) {
+                if (x.id == action.payload.id) {
                     return Object.assign({}, x, action.payload);
                 }
                 return x;

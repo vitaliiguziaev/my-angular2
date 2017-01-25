@@ -1,6 +1,7 @@
+import { authorsReducer } from './reducers/authors.reducers';
 import { AppActions } from './../../app.actions';
+import { coursesReducer } from './reducers/courses.reducers';
 import { PageComponent } from './../page.component';
-import { coursesReducer } from './courses.reducers';
 import { Store } from '@ngrx/store';
 import { AppPaths } from './../../app.routes';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
@@ -17,7 +18,7 @@ export class CoursesComponent extends PageComponent {
     courses: Course[] = [];
 
     constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>, private appActions: AppActions) {
-        super(store, { coursesReducer });
+        super(store, { coursesReducer, authorsReducer });
     }
 
     onInit() {

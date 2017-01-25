@@ -24,7 +24,8 @@ import { ROUTES } from './app.routes';
 
 /* REDUX */
 import { AppActions } from './app.actions';
-import { coursesReducer } from './pages/courses/courses.reducers';
+import { coursesReducer } from './pages/courses/reducers/courses.reducers';
+import { authorsReducer } from './pages/courses/reducers/authors.reducers';
 
 /* ANGULAR */
 import { NgModule } from '@angular/core';
@@ -33,7 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -57,7 +58,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
   ],
   entryComponents: [ModalContent],
   imports: [
-    StoreModule.provideStore(coursesReducer),
+    StoreModule.provideStore({coursesReducer,authorsReducer}),
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgbModule.forRoot(),
     BrowserModule,
