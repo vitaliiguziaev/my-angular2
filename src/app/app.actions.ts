@@ -1,10 +1,9 @@
-import { Store, Action, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppActions {
     static COURSES_LOADED = "COURSES_LOADED";
-    static GET_COURSE = "GET_COURSE";
     static FILTER_COURSES = "FILTER_COURSES";
 
     static ADD_COURSE = "ADD_COURSE";
@@ -20,5 +19,11 @@ export class AppActions {
             type,
             payload
         });
+    }
+
+    getState(): any {
+        let state;
+        this._store.take(1).subscribe(s => state = s);
+        return state;
     }
 }

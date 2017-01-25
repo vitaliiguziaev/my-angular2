@@ -21,7 +21,12 @@ export class CourseService {
     }
 
     getCourse(id: number) {
-        this.appActions.dispatch(AppActions.GET_COURSE, {id: id});
+        let state = this.appActions.getState();
+        let ndx = state.coursesReducer.findIndex(x => x.id == id);
+        if (ndx >= 0) {
+            return state.coursesReducer[ndx];
+        }
+        return null;
     }
 
     buildCoursesList() {

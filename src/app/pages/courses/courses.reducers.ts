@@ -3,18 +3,6 @@ import { Course } from './../../services';
 
 export const coursesReducer = (state: Course[] = [], action) => {
     switch (action.type) {
-        case AppActions.COURSES_LOADED:
-            return action.payload;
-
-        // case AppActions.GET_COURSE:
-        //     if (state.indexOf(action.payload.id) > -1) {
-        //         return state;
-        //     }
-        //     let i = state.findIndex(x => x.id == action.payload.id);
-        //     if (i >= 0) {
-        //         return state[i];
-        //     }
-        //     return state;
 
         case AppActions.ADD_COURSE:
             return [...state, action.payload];

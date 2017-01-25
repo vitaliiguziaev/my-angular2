@@ -50,10 +50,7 @@ export class AddEditCourseComponent extends PageComponent {
         });
         
         if (!this.isCreateCourse) {
-            this._subscription(this.store.select(state => state.coursesReducer).subscribe((item: Course) => {
-                this.course = item;
-            }));
-            this.courseService.getCourse(this.id);
+           this.course = this.courseService.getCourse(this.id);
         } 
 
         this.authors = this.course.authors;
