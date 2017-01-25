@@ -17,20 +17,16 @@ export class CoursesComponent extends PageComponent {
     courses: Course[] = [];
 
     constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>, private appActions: AppActions) {
-        super(store, coursesReducer);
+        super(store, {coursesReducer});
     }
 
-    ngOnInit() {
+    onInit() {
         this.courseService.buildCoursesList();
         this.setBreadcrumb();
         this._subscription(
             this.store.select(state => state.coursesReducer).subscribe((items: Course[]) => {
                 this.courses = items;
             }));
-    }
-
-    onInit() {
-
     }
 
     setBreadcrumb() {
