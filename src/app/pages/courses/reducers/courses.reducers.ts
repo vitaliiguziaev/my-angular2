@@ -5,15 +5,20 @@ export const coursesReducer = (state: Course[] = [], action) => {
     switch (action.type) {
         case AppActions.COURSES_LOADED:
             return action.payload;
+        
+        case AppActions.FILTER_COURSES:
+            return action.payload;
 
         case AppActions.ADD_COURSE:
+            const cour = action.payload;
+            let n = state.findIndex(x => x.id == cour.id);
+            if (n >= 0) {
+                return state;
+            }
             return [...state, action.payload];
 
         case AppActions.DELETE_COURSE:
             const course = action.payload;
-            if (state.indexOf(course.id) > -1) {
-                return state;
-            }
             let ndx = state.findIndex(x => x.id == course.id);
             if (ndx >= 0) {
                 return [...state.slice(0, ndx), ...state.slice(ndx + 1)];

@@ -35,8 +35,8 @@ export class CourseService {
 
     addCourse(course: Course) {
         return Observable.create((observer: Observer<Course>) => {
-            this.newId = this.newId + 1;
-            course.id = this.newId;
+            course.id = ++this.newId;
+            this.courses.push(course);
             observer.next(course);
             observer.complete();
         }).subscribe(x => {
@@ -76,11 +76,16 @@ export class CourseService {
 
     searchCourses(query: string): Observable<Course[]> {
         return Observable.create((observer: Observer<Array<Course>>) => {
+            let result;
             if (query) {
-                this.courses = this.courses.filter(x => x.title.search(new RegExp(query, 'i')) !== -1);
+                result = this.courses.filter(x => x.title.search(new RegExp(query, 'i')) !== -1);
+            } else {
+                result = this.courses;
             }
-            observer.next(this.courses);
+            observer.next(result);
             observer.complete();
+        }).subscribe(res => {
+            this.appActions.dispatch(AppActions.FILTER_COURSES, res);
         });
     }
 

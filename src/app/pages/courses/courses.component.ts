@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppPaths } from './../../app.routes';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CourseService, Course, BreadcrumbService } from './../../services/';
-import { Router } from '@angular/router';   
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'list-courses',
@@ -50,6 +50,6 @@ export class CoursesComponent extends PageComponent {
     }
 
     searchCourses(query: string) {
-        this.courseService.searchCourses(query).subscribe(courses => this.courses = courses);
+        this.courseService.searchCourses(query);
     }
 }
