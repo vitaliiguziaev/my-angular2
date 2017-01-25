@@ -1,7 +1,7 @@
 import { AppActions } from './../../app.actions';
 import { PageComponent } from './../page.component';
 import { coursesReducer } from './courses.reducers';
-import { Store, Action, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppPaths } from './../../app.routes';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CourseService, Course, BreadcrumbService } from './../../services/';
@@ -17,11 +17,10 @@ export class CoursesComponent extends PageComponent {
     courses: Course[] = [];
 
     constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>, private appActions: AppActions) {
-        super(store, {coursesReducer});
+        super(store, { coursesReducer });
     }
 
     onInit() {
-        this.courseService.buildCoursesList();
         this.setBreadcrumb();
         this._subscription(
             this.store.select(state => state.coursesReducer).subscribe((items: Course[]) => {
@@ -37,8 +36,7 @@ export class CoursesComponent extends PageComponent {
     deleteCourse(course: Course) {
         let confirmDialog = confirm("Are you sure you want to remove this course?");
         if (confirmDialog == true) {
-            this.courseService.deleteCourse(course).subscribe(() => { });
-            // this.getCourses();
+            this.courseService.deleteCourse(course);
         }
     }
 

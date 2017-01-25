@@ -17,23 +17,14 @@ export class CourseService {
             new Course(4, 'Course 4', 'description 4', 130, new Date(), [new Author(5, 'Author 5'), new Author(6, 'Author 6')]),
         ];
         this.newId = this.courses.length;
+        this.buildCoursesList();
     }
 
-    getCourse(id: number): Observable<Course> {
-        return Observable.create((observer: Observer<Course>) => {
-            let course = this.courses.find(x => x.id === id);
-            observer.next(course);
-            observer.complete();
-        });
+    getCourse(id: number) {
+        this.appActions.dispatch(AppActions.GET_COURSE, {id: id});
     }
 
     buildCoursesList() {
-        // Observable.create((observer: Observer<Array<Course>>) => {
-        //     observer.next(this.courses);
-        //     observer.complete();
-        // }).subscribe((items: Course[]) => {
-        //     items.map(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
-        // });
         this.courses.map(x => this.appActions.dispatch(AppActions.ADD_COURSE, x));
     }
 
@@ -61,8 +52,8 @@ export class CourseService {
         });
     }
 
-    deleteCourse(course: Course): Observable<void> {
-        return Observable.create((observer: Observer<void>) => {
+    deleteCourse(course: Course): Observable<Course> {
+        return Observable.create((observer: Observer<Course>) => {
             try {
                 let number = this.getRandomNumber(1, 5);
                 if (number % 2 == 0) {
@@ -72,6 +63,7 @@ export class CourseService {
                 this.notification.show(error);
             }
             this.courses = this.courses.filter(x => x.id !== course.id);
+            observer.next(course);
             observer.complete();
         }).subscribe(res => {
             this.appActions.dispatch(AppActions.DELETE_COURSE, res);

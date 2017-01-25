@@ -1,3 +1,6 @@
+import { coursesReducer } from './../courses.reducers';
+import { AppActions } from './../../../app.actions';
+import { Store } from '@ngrx/store';
 import { AppPaths } from './../../../app.routes';
 import { AuthorsValidator, DateValidator } from './../../../validators';
 import { ModalErrorWindow } from './../../../components';
@@ -7,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PageComponent } from './../../page.component';
 
 @Component({
     selector: 'add-edit-course',
@@ -14,7 +18,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
     providers: [AuthorService]
 })
 
-export class AddEditCourseComponent implements OnInit, OnDestroy {
+export class AddEditCourseComponent extends PageComponent {
     @ViewChild(ModalErrorWindow) modalWindow: ModalErrorWindow;
     courseForm: FormGroup;
     sub: Subscription;
@@ -31,19 +35,26 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
         private router: Router,
         private fb: FormBuilder,
         private breadcrumbService: BreadcrumbService,
-        private authorService: AuthorService
-    ) { }
-
-    ngOnInit(): void {
+        private authorService: AuthorService,
+        private store: Store<any>,
+        private appActions: AppActions
+    ) { super(store, { coursesReducer }); }
+   
+    onInit() {
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
             if (!this.id) {
                 this.isCreateCourse = true;
                 this.course = new Course(0, 'New Course', null, null, null, null);
-            } else {
-                this.courseService.getCourse(this.id).subscribe(course => this.course = course);
             }
         });
+        
+        if (!this.isCreateCourse) {
+            this._subscription(this.store.select(state => state.coursesReducer).subscribe((item: Course) => {
+                this.course = item;
+            }));
+            this.courseService.getCourse(this.id);
+        } 
 
         this.authors = this.course.authors;
         this.authorService.getAuthorsList().subscribe(authorsFromService => {
@@ -151,9 +162,9 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
             this.course.authors = this.authors;
 
             if (this.isCreateCourse) {
-                this.courseService.addCourse(this.course).subscribe(course => { });
+                this.courseService.addCourse(this.course);
             } else {
-                this.courseService.editCourse(this.course).subscribe(course => { });
+                this.courseService.editCourse(this.course);
             }
             this.router.navigate([AppPaths.COURSES_PAGE]);
         }
