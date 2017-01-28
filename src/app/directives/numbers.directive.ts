@@ -16,7 +16,6 @@ export class NumbersDirective {
     }
 
     handleEvent($event) {
-        console.log($event);
         const value = this.el.nativeElement.value;
         if (!this.isValid(value)) {
             const intValue = parseInt(value, 10)

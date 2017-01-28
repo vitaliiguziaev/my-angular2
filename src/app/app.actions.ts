@@ -7,6 +7,7 @@ export class AppActions {
     static ADD_COURSE = "ADD_COURSE";
     static UPDATE_COURSE = "UPDATE_COURSE";
     static DELETE_COURSE = "DELETE_COURSE";
+    static FILTER_COURSES = "FILTER_COURSES";
     static AUTHORS_LOADED = "AUTHORS_LOADED";
 
     constructor(private _store: Store<any>) {
