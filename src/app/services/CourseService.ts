@@ -63,11 +63,11 @@ export class CourseService {
                 if (number % 2 == 0) {
                     throw new Error('Server return bad response!');
                 }
+                this.courses = this.courses.filter(x => x.id !== course.id);
+                observer.next(course);
             } catch (error) {
                 this.notification.show(error);
             }
-            this.courses = this.courses.filter(x => x.id !== course.id);
-            observer.next(course);
             observer.complete();
         }).subscribe(res => {
             this.appActions.dispatch(AppActions.DELETE_COURSE, res);
