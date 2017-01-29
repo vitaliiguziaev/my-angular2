@@ -16,6 +16,7 @@ export class LoginComponent {
 
     constructor(private loginService: LoginService, private router: Router, private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.clean();
+        this.loginService.cleanUser();
     }
 
     logIn() {

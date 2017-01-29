@@ -30,9 +30,13 @@ export class LoginService {
     }
 
     logOff(): boolean {
-        localStorage.removeItem(LoginService.LOGIN_KEY);
+        this.cleanUser();
         this.router.navigate([AppPaths.LOGIN_PAGE]);
         return false;
+    }
+
+    cleanUser(){
+        localStorage.removeItem(LoginService.LOGIN_KEY);
     }
 
     getLogin() {
