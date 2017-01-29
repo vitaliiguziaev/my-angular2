@@ -1,3 +1,4 @@
+import { breadcrumbsReducer } from './../reducers/breadcrumbs.reducer';
 import { authorsReducer } from './../reducers/authors.reducers';
 import { AppActions } from './../../../app.actions';
 import { coursesReducer } from './../reducers/courses.reducers';
@@ -38,7 +39,7 @@ export class AddEditCourseComponent extends PageComponent {
         private authorService: AuthorService,
         private store: Store<any>,
         private appActions: AppActions
-    ) { super(store, { coursesReducer,authorsReducer }); }
+    ) { super(store, { coursesReducer,authorsReducer,breadcrumbsReducer }); }
    
     onInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -56,23 +57,22 @@ export class AddEditCourseComponent extends PageComponent {
             } else {
                 this.allAuthors = authorsFromStore.filter(x => !this.authors.find(z => z.id == x.id));
             }
+            this.setBreadcrumb();
         });
 
-        this.setBreadcrumb();
         this.buildForm();
     }
 
     setBreadcrumb() {
-        this.breadcrumbService.clean();
         this.breadcrumbLink = AppPaths.COURSES_PAGE;
-        this.breadcrumbService.add(this.breadcrumbLink, 'Courses');
+        this.breadcrumbService.add(1, this.breadcrumbLink, 'Courses');
 
         if (this.isCreateCourse) {
             this.breadcrumbLink = this.breadcrumbLink + '/new';
         } else {
             this.breadcrumbLink = this.breadcrumbLink + '/' + this.id;
         }
-        this.breadcrumbService.add(this.breadcrumbLink, this.course.title);
+        this.breadcrumbService.add(2, this.breadcrumbLink, this.course.title);
     }
 
     ngOnDestroy() {
@@ -90,7 +90,7 @@ export class AddEditCourseComponent extends PageComponent {
         });
 
         this.courseForm.controls['title'].valueChanges.subscribe((title: string) => {
-            this.breadcrumbService.updateTitle(this.breadcrumbLink, title);
+            this.breadcrumbService.update(2,this.breadcrumbLink, title);
         });
     }
 
@@ -159,12 +159,14 @@ export class AddEditCourseComponent extends PageComponent {
             } else {
                 this.courseService.editCourse(this.course);
             }
+            this.breadcrumbService.delete(2);
             this.router.navigate([AppPaths.COURSES_PAGE]);
         }
         return false;
     }
 
     cancel(): boolean {
+        this.breadcrumbService.delete(2);
         this.router.navigate([AppPaths.COURSES_PAGE]);
         return false;
     }

@@ -1,6 +1,8 @@
+import { breadcrumbsReducer } from './../../pages/courses/reducers/breadcrumbs.reducer';
+import { Store } from '@ngrx/store';
 import { BreadcrumbElement } from './breadcrumbElement';
 import { BreadcrumbService } from './../../services/BreadcrumbService';
-
+import { PageComponent } from './../../pages/page.component';
 import { Injectable, Component, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -30,10 +32,15 @@ import { Router } from '@angular/router';
       }
     `]
 })
-export class BreadcrumbComponent {
+
+export class BreadcrumbComponent extends PageComponent {
     breadcrumbs: BreadcrumbElement[];
 
-    constructor(private router: Router, private breadcrumbService: BreadcrumbService) {
-        this.breadcrumbs = this.breadcrumbService.gets();
+    constructor(private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>) {
+        super(store, {breadcrumbsReducer});
+    }
+
+    onInit() {
+        this._subscription(this.store.select(state => state.breadcrumbsReducer).subscribe(items => this.breadcrumbs = items));
     }
 }

@@ -10,6 +10,11 @@ export class AppActions {
     static FILTER_COURSES = "FILTER_COURSES";
     static AUTHORS_LOADED = "AUTHORS_LOADED";
 
+    static ADD_BREADCRUMB = "ADD_BREADCRUMB";
+    static DELETE_BREADCRUMB = "DELETE_BREADCRUMB";
+    static UPDATE_BREADCRUMB = "UPDATE_BREADCRUMB";
+    static CLEAN_BREADCRUMB = "CLEAN_BREADCRUMB";
+
     constructor(private _store: Store<any>) {
 
     }

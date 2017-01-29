@@ -1,3 +1,4 @@
+import { breadcrumbsReducer } from './reducers/breadcrumbs.reducer';
 import { authorsReducer } from './reducers/authors.reducers';
 import { AppActions } from './../../app.actions';
 import { coursesReducer } from './reducers/courses.reducers';
@@ -18,7 +19,7 @@ export class CoursesComponent extends PageComponent {
     courses: Course[] = [];
 
     constructor(private courseService: CourseService, private router: Router, private breadcrumbService: BreadcrumbService, private store: Store<any>, private appActions: AppActions) {
-        super(store, { coursesReducer, authorsReducer });
+        super(store, { coursesReducer, authorsReducer,breadcrumbsReducer });
     }
 
     onInit() {
@@ -30,8 +31,7 @@ export class CoursesComponent extends PageComponent {
     }
 
     setBreadcrumb() {
-        this.breadcrumbService.clean();
-        this.breadcrumbService.add(AppPaths.COURSES_PAGE, 'Courses');
+        this.breadcrumbService.add(1, AppPaths.COURSES_PAGE, 'Courses');
     }
 
     deleteCourse(course: Course) {

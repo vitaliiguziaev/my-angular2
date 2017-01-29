@@ -1,3 +1,5 @@
+import { AppActions } from './../app.actions';
+import { Store } from '@ngrx/store';
 import { BreadcrumbElement } from './../components/breadcrumb/breadcrumbElement';
 import { Injectable } from '@angular/core';
 
@@ -5,20 +7,24 @@ import { Injectable } from '@angular/core';
 export class BreadcrumbService {
     private breadcrumbs: BreadcrumbElement[] = [];
 
-    gets() {
-        return this.breadcrumbs;
+    constructor(private appActions: AppActions) {
     }
 
-    add(link: string, title: string) {
-        this.breadcrumbs.push(new BreadcrumbElement(link, title));
+    add(id: number, link: string, title: string) {
+        let breadcrumb = new BreadcrumbElement(id, link, title);
+        this.appActions.dispatch(AppActions.ADD_BREADCRUMB, breadcrumb);
     }
 
-    updateTitle(link: string, title: string) {
-        let ndx = this.breadcrumbs.findIndex(x => x.link == link);
-        this.breadcrumbs[ndx].title = title;
+    update(id: number, link: string, title: string) {
+        let breadcrumb = new BreadcrumbElement(id, link, title);
+        this.appActions.dispatch(AppActions.UPDATE_BREADCRUMB, breadcrumb);
+    }
+
+    delete(id: number) {
+        this.appActions.dispatch(AppActions.DELETE_BREADCRUMB, id);
     }
 
     clean() {
-        this.breadcrumbs.length = 0;
+        this.appActions.dispatch(AppActions.CLEAN_BREADCRUMB);
     }
 }

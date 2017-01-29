@@ -26,6 +26,7 @@ import { ROUTES } from './app.routes';
 import { AppActions } from './app.actions';
 import { coursesReducer } from './pages/courses/reducers/courses.reducers';
 import { authorsReducer } from './pages/courses/reducers/authors.reducers';
+import { breadcrumbsReducer } from './pages/courses/reducers/breadcrumbs.reducer';
 
 /* ANGULAR */
 import { NgModule } from '@angular/core';
@@ -58,7 +59,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   ],
   entryComponents: [ModalContent],
   imports: [
-    StoreModule.provideStore({coursesReducer,authorsReducer}),
+    StoreModule.provideStore({coursesReducer,authorsReducer, breadcrumbsReducer}),
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgbModule.forRoot(),
     BrowserModule,
