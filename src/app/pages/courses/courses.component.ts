@@ -31,6 +31,7 @@ export class CoursesComponent extends PageComponent {
     }
 
     setBreadcrumb() {
+        this.breadcrumbService.delete(2);
         this.breadcrumbService.add(1, AppPaths.COURSES_PAGE, 'Courses');
     }
 
