@@ -25,6 +25,9 @@ export const breadcrumbsReducer = (state: BreadcrumbElement[] = [], action) => {
                 return x;
             });
 
+        case AppActions.CLEAN_BREADCRUMB:
+            return action.payload;
+
         default: return state;
     }
 }

@@ -25,6 +25,6 @@ export class BreadcrumbService {
     }
 
     clean() {
-        this.appActions.dispatch(AppActions.CLEAN_BREADCRUMB);
+        this.appActions.dispatch(AppActions.CLEAN_BREADCRUMB, []);
     }
 }
